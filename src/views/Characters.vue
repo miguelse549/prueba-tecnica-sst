@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen border flex flex-col justify-between bg-gray-100">
-    <header-filter />
+    <header-filter class="sticky top-0 z-10"/>
     <div class="w-3/4 border mx-auto flex gap-8 flex-wrap justify-center">
       <card v-for="(item, index) in items" :key="index" :info="item" />
     </div>

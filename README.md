@@ -1,4 +1,4 @@
-# my_app2
+# prueba-tecnica-sst
 
 ## Project setup
 ```

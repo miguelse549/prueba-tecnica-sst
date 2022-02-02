@@ -1,5 +1,5 @@
 <template>
-  <div class="h-20 mb-8 flex justify-evenly items-center bg-gray-100 shadow-xl">
+  <div class="h-20 mb-8 flex justify-evenly items-center bg-gray-100 shadow-xl ">
     <div>
       <img class="w-40" src="imagenes/logo.png" alt="logo" />
     </div>
