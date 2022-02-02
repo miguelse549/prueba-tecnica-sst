@@ -1,15 +1,15 @@
 <template>
-  <div class="h-screen border flex flex-col justify-between">
+  <div class="min-h-screen border flex flex-col justify-between bg-gray-100">
     <header-filter />
-    <div class="w-3/4 border mx-auto">
-      <card />
+    <div class="w-3/4 border mx-auto flex gap-8 flex-wrap justify-center">
+      <card v-for="(item, index) in items" :key="index" :info="item" />
     </div>
     <paginator />
   </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 import Paginator from "@/components/Paginator.vue";
 import Card from "@/components/Card.vue";
 import HeaderFilter from "@/components/Header.vue";
@@ -25,7 +25,7 @@ export default {
         species: "",
         gender: "",
         location: "",
-        page: 2,
+        page: 1,
       },
     };
   },
@@ -33,6 +33,11 @@ export default {
     Paginator,
     Card,
     HeaderFilter,
+  },
+  computed: {
+    ...mapState({
+      items: (state) => state.items,
+    }),
   },
 
   methods: {
