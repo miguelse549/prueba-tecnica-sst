@@ -12,9 +12,10 @@
       <header-filter
         class="sticky top-0 z-10"
         @dataFilter="parameters = $event"
+        @sortBy="sortBy = $event"
       />
 
-      <div class="w-3/4  mx-auto flex gap-8 flex-wrap justify-center">
+      <div class="w-3/4 mx-auto flex gap-8 flex-wrap justify-center">
         <card
           v-for="(item, index) in items"
           :key="index"
@@ -23,6 +24,7 @@
         />
       </div>
       <paginator @page="parameters.page = $event" />
+      
     </div>
   </div>
 </template>
@@ -51,6 +53,7 @@ export default {
         page: 1,
       },
       pagesChange: 0,
+      sortBy: null,
     };
   },
 
@@ -61,11 +64,14 @@ export default {
     },
     parameters: {
       handler(val) {
-        console.log(val);
         this.parameters = val;
         this.getData(this.parameters);
       },
       deep: true,
+    },
+    sortBy(val) {
+      this.sortBy = val;
+      this.orderFields(val);
     },
   },
   computed: {
@@ -84,7 +90,7 @@ export default {
     ...mapActions(["getData"]),
 
     async detailsCharacter(id) {
-      console.log(id);
+      //console.log(id);
       // this.$router.push("/character/" + 5);
       const url = "https://rickandmortyapi.com/api/character/" + id;
       try {
@@ -100,6 +106,21 @@ export default {
 
     closeModal() {
       this.showModal = false;
+    },
+
+    orderFields(prop) {
+      this.items.sort(this.comparateFields(prop));
+    },
+
+    comparateFields(prop) {
+      return function (a, b) {
+        if (a[prop] > b[prop]) {
+          return 1;
+        } else if (a[prop] < b[prop]) {
+          return -1;
+        }
+        return 0;
+      };
     },
   },
   created() {
