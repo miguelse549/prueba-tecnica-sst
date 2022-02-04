@@ -1,9 +1,9 @@
 <template>
-  <div class="h-20 mb-8 flex justify-evenly items-center bg-gray-100 shadow-xl">
+  <div class="h-auto mb-8 flex justify-center xl:justify-evenly xl:items-center bg-gray-100 shadow-xl xl:h-20 ">
     <div>
-      <img class="w-40" src="imagenes/logo.png" alt="logo" />
+      <img class="hidden xl:block xl:w-40" src="imagenes/logo.png" alt="logo" />
     </div>
-    <div class="flex items-center flex-wrap gap-x-4">
+    <div class="flex items-center flex-wrap justify-center gap-y-4 gap-x-4 my-2 sm:gap-x-4">
       <input
         v-model="dataFilter.name"
         placeholder="Nombre"
@@ -30,6 +30,7 @@
         id="status"
         @change="changeFilter"
       >
+      
         <option
           v-for="(state, index) in status"
           :key="index"
@@ -55,16 +56,16 @@
         </option>
       </select>
 
-      <button class="rounded-md border-2 py-2 px-4 border-green-700 font-bold" @click="changeFilter">
+      <!-- <button class="rounded-md border-2 py-2 px-4 border-green-700 font-bold" @click="changeFilter">
         <span class="text-green-700">Filtrar</span>
-      </button>
+      </button> -->
     </div>
 
-    <div>
+    <!-- <div>
       <button class="rounded-md border-2 py-2 px-4 border-green-700 font-bold">
         <span class="text-green-700">Filtros</span>
       </button>
-    </div>
+    </div> -->
   </div>
 </template>
 

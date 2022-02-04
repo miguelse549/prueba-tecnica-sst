@@ -22,7 +22,7 @@
       <p>
         Location: <span class="font-normal">{{ info.location.name }}</span>
       </p>
-      <p>Cantidad comentarios:<span>10</span></p>
+      <!-- <p>Cantidad comentarios:<span>10</span></p> -->
     </div>
   </div>
 </template>

@@ -12,10 +12,27 @@
       z-50
     "
   >
-    <div class="w-80 h-84 rounded-xl flex flex-col justify-center bg-white">
+    <div
+      class="
+        w-72
+        md:w-1/3
+        h-84
+        rounded-xl
+        flex flex-col
+        justify-center
+        bg-white
+      "
+    >
       <div class="prueba flex flex-col justify-center items-center">
         <div
-          class="bg-cover bg-center h-60 w-full rounded-t-xl"
+          class="
+            bg-cover bg-center bg-no-repeat
+            h-56
+            md:h-96
+            w-full
+            rounded-t-xl
+            bg-gray-300
+          "
           :style="{ 'background-image': 'url(' + dataDetails.image + ')' }"
         >
           <!-- <img
@@ -24,7 +41,15 @@
             alt="image"
           /> -->
           <i
-            class="fas fa-times-circle text-black text-2xl cursor-pointer ml-72"
+            class="
+              fas
+              fa-times-circle
+              text-white text-2xl
+              cursor-pointer
+              flex
+              justify-end
+              mx-2
+            "
             @click="$emit('closeModal')"
           ></i>
         </div>
@@ -52,9 +77,11 @@
           <span class="font-thin">{{ dataDetails.location.name }}</span>
         </p>
         <hr />
+        <p class="my-2">Episodios:</p>
+        <hr />
       </div>
 
-      <div class="font-bold">
+      <!-- <div class="font-bold">
         <p class="my-2">Comentarios:</p>
         <textarea :v-model="dataDetails.coment" class="border"></textarea>
         <button
@@ -63,30 +90,23 @@
         >
           <span class="text-green-700">Agregar comentario</span>
         </button>
-      </div>
+
+        <p class="my-1">Episodios:</p>
+      </div> -->
 
       <div class="my-4 px-8 overflow-y-auto h-32">
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
+        <item
+          v-for="(episode, index) in episodes"
+          :key="index"
+          :name="episode.name"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 import Item from "@/components/Item.vue";
 export default {
   name: "Modal",
@@ -96,7 +116,9 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      episodes: [],
+    };
   },
   components: {
     Item,
@@ -105,9 +127,23 @@ export default {
     addComent(coment) {
       console.log(coment);
     },
+    async getEpisodes() {
+      const urls = this.dataDetails.episode;
+
+      for (const url of urls) {
+        try {
+          const { data } = await axios.get(url);
+          this.episodes.push({ name: data.name, airdate: data.air_date });
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      console.log(JSON.stringify(this.episodes));
+    },
   },
   created() {
-    console.log(this.dataDetails.episode);
+    this.getEpisodes();
+    // console.log(this.dataDetails.episode);
   },
 };
 </script>

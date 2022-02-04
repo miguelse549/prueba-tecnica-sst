@@ -14,7 +14,7 @@
         @dataFilter="parameters = $event"
       />
 
-      <div class="w-3/4 border mx-auto flex gap-8 flex-wrap justify-center">
+      <div class="w-3/4  mx-auto flex gap-8 flex-wrap justify-center">
         <card
           v-for="(item, index) in items"
           :key="index"
@@ -95,8 +95,6 @@ export default {
       } catch (error) {
         console.log(error);
       }
-
-      console.log(id);
       this.showModal = true;
     },
 
