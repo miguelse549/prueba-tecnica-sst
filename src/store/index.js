@@ -16,7 +16,7 @@ export default createStore({
   actions: {
 
     async getData({ commit }, { name, status, species, gender, location, page }) {
-      const url = "https://rickandmortyapi.com/api/character"
+      const url = "https://rickandmortyapi.com/api/character/"
       try {
         const { data } = await axios.get(url, {
           params: {

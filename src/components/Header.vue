@@ -1,15 +1,35 @@
 <template>
-  <div class="h-20 mb-8 flex justify-evenly items-center bg-gray-100 shadow-xl ">
+  <div class="h-20 mb-8 flex justify-evenly items-center bg-gray-100 shadow-xl">
     <div>
       <img class="w-40" src="imagenes/logo.png" alt="logo" />
     </div>
-    <div class="flex items-center gap-x-4">
-      <input placeholder="Nombre" type="text" />
-      <input placeholder="Especie" type="text" />
-      <input placeholder="Locación" type="text" />
+    <div class="flex items-center flex-wrap gap-x-4">
+      <input
+        v-model="dataFilter.name"
+        placeholder="Nombre"
+        type="text"
+        @keyup="changeFilter"
+      />
+      <input
+        v-model="dataFilter.species"
+        placeholder="Especie"
+        type="text"
+        @keyup="changeFilter"
+      />
+      <input
+        v-model="dataFilter.location"
+        placeholder="Locación"
+        type="text"
+        @keyup="changeFilter"
+      />
 
       <label for="gender">Estado:</label>
-      <select name="status" id="status">
+      <select
+        v-model="dataFilter.status"
+        name="status"
+        id="status"
+        @change="changeFilter"
+      >
         <option
           v-for="(state, index) in status"
           :key="index"
@@ -20,7 +40,12 @@
       </select>
 
       <label for="gender">Género:</label>
-      <select name="gender" id="gender">
+      <select
+        v-model="dataFilter.gender"
+        name="gender"
+        id="gender"
+        @change="changeFilter"
+      >
         <option
           v-for="(gender, index) in genders"
           :key="index"
@@ -30,8 +55,14 @@
         </option>
       </select>
 
-      <button class="rounded-md border-2 py-2 px-4 border-green-700 font-bold">
+      <button class="rounded-md border-2 py-2 px-4 border-green-700 font-bold" @click="changeFilter">
         <span class="text-green-700">Filtrar</span>
+      </button>
+    </div>
+
+    <div>
+      <button class="rounded-md border-2 py-2 px-4 border-green-700 font-bold">
+        <span class="text-green-700">Filtros</span>
       </button>
     </div>
   </div>
@@ -41,6 +72,9 @@
 export default {
   data() {
     return {
+      dataFilter: {
+        page: 1,
+      },
       genders: [
         { value: "male", label: "Masculino" },
         { value: "female", label: "Femenino" },
@@ -54,22 +88,27 @@ export default {
       ],
     };
   },
+  methods: {
+    changeFilter() {
+      this.$emit("dataFilter", this.dataFilter);
+      //console.log(JSON.stringify(this.dataFilter));
+    },
+  },
 };
 </script>
 
 <style scoped>
-
-input,select {
+input,
+select {
   height: 40px;
   padding-left: 10px;
   border-bottom: 2px solid;
   @apply border-green-700;
-  @apply rounded-md
+  @apply rounded-md;
 }
 
-input:focus,select:focus{
+input:focus,
+select:focus {
   outline: none;
 }
-
-
 </style>
