@@ -1,24 +1,4 @@
-# prueba-tecnica-sst
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Para el diseño de la interfaz gráfica se utilizó la librería Tailwind CSS para crear componentes reutilizables como card, header, modal, item y paginador  
+Para el diseño responsivo se hizo uso de los breakpoints de Tailwind
+Para el consumo de la API se hizo uso de la libreria axios, para persistir los datos se hizo uso de vuex
