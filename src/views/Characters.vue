@@ -97,7 +97,7 @@ export default {
         const { data } = await axios.get(url);
         this.dataDetails = data;
         this.dataDetails.coment = "";
-        console.log(JSON.stringify(this.dataDetails));
+        //console.log(JSON.stringify(this.dataDetails));
       } catch (error) {
         console.log(error);
       }

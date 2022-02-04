@@ -35,11 +35,6 @@
           "
           :style="{ 'background-image': 'url(' + dataDetails.image + ')' }"
         >
-          <!-- <img
-            class="rounded-t-xl w-full h-auto bg-contain"
-            src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
-            alt="image"
-          /> -->
           <i
             class="
               fas
@@ -138,7 +133,7 @@ export default {
           console.log(error);
         }
       }
-      console.log(JSON.stringify(this.episodes));
+    //  console.log(JSON.stringify(this.episodes));
     },
   },
   created() {
