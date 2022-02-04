@@ -3,7 +3,7 @@
     <div>
       <img class="hidden xl:block xl:w-40" src="imagenes/logo.png" alt="logo" />
     </div>
-    <div class="flex items-center flex-wrap justify-center gap-y-4 gap-x-4 my-2 sm:gap-x-4">
+    <div class="flex items-center flex-col sm:flex-row flex-wrap justify-center gap-y-4 gap-x-4 my-2 ">
       <input
         v-model="dataFilter.name"
         placeholder="Nombre"
@@ -16,12 +16,7 @@
         type="text"
         @keyup="changeFilter"
       />
-      <input
-        v-model="dataFilter.location"
-        placeholder="Locación"
-        type="text"
-        @keyup="changeFilter"
-      />
+  
 
       <label for="gender">Estado:</label>
       <select
